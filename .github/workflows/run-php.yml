@@ -1,0 +1,27 @@
+name: Run PHP File
+
+on:
+  push:
+    branches:
+      - main  # Remplacez 'main' par la branche que vous utilisez
+
+jobs:
+  run-php:
+    runs-on: ubuntu-latest  # Utiliser l'environnement Ubuntu de GitHub Actions
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2  # Récupère votre code depuis le dépôt
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2  # Installe PHP
+      with:
+        php-version: '8.3'  # Remplacez par la version de PHP que vous utilisez
+
+    - name: Install dependencies
+      run: |
+        composer install  # Installe les dépendances PHP si elles sont dans composer.json
+
+    - name: Run index.php
+      run: |
+        php index.php  # Exécute votre fichier PHP index.php
