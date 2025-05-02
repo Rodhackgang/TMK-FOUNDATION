@@ -352,16 +352,66 @@ jQuery(document).on('appear', '.pie-chart',  function()  {
 /*  Scroll to top
 /*------------------------------*/
 	 
-	$(window).scroll(function(){
-                    if ($(this).scrollTop() > 100) {
-                        $('.scrollup').fadeIn();
-                    } else {
-                        $('.scrollup').fadeOut();
-                    }
-                }); 
-         
-                $('.scrollup').click(function(){
-                    $("html, body").animate({ scrollTop: 0 }, 2000);
-                    return false;
-                });
-   
+$(window).scroll(function(){
+    // Vérifie si le défilement dépasse 100px
+    if ($(this).scrollTop() > 100) {
+        // Afficher les boutons
+        $('.scrollup').fadeIn();
+        $('.whatsapp').fadeIn();
+        $('.instagram').fadeIn();
+        $('.facebook').fadeIn();
+    } else {
+        // Masquer les boutons
+        $('.scrollup').fadeOut();
+        $('.whatsapp').fadeOut();
+        $('.instagram').fadeOut();
+        $('.facebook').fadeOut();
+    }
+});
+
+// Action pour le bouton scrollup (retour en haut)
+$('.scrollup').click(function(){
+    $("html, body").animate({ scrollTop: 0 }, 2000);
+    return false;
+});
+
+// Action pour le bouton WhatsApp
+$('.whatsapp').click(function(){
+    window.location.href = 'https://wa.me/+243978219845'; // Redirection vers WhatsApp
+    return false;
+});
+
+// Action pour le bouton Instagram
+$('.instagram').click(function(){
+    window.open('https://www.instagram.com/the_miracle_kingdom?igsh=aDEwN3NzdzQ2N2M3', '_blank');
+    return false;
+});
+
+// Action pour le bouton Facebook
+$('.facebook').click(function(){
+    window.open('https://www.facebook.com/share/1BreVXkWm5', '_blank');
+    return false;
+});
+// Fonction pour afficher la carte toutes les minutes
+$(document).ready(function() {
+    $('#donCard').addClass('show');
+});
+
+function openZoom(imgElement) {
+	var modal = document.getElementById("zoomModal");
+	var zoomedImage = document.getElementById("zoomedImage");
+	
+	// Set the source of the zoomed image to the clicked image's source
+	zoomedImage.src = imgElement.src;
+	
+	// Display the modal
+	modal.style.display = "flex";
+  }
+  
+  function closeZoom() {
+	var modal = document.getElementById("zoomModal");
+	
+	// Hide the modal when clicked
+	modal.style.display = "none";
+  }
+  

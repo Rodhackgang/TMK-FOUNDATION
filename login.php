@@ -21,15 +21,15 @@ require './utils/header.php';
                         <label for="password" class="form-label">Mot de passe</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required>
                     </div>
-
-                    <!-- Button to Validate -->
+<!--
+                 
                     <center>
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary btn-lg">Se connecter</button>
                         </div>
                     </center>
                 </form>
-
+-->
                 <!-- Forgot Password Link -->
                 <div class="mt-3 text-center">
                     <a href="#" id="forgotPasswordLink" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Mot de passe oublié ?</a>

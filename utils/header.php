@@ -57,7 +57,7 @@
                 <li> <a href="#services">Services</a> </li>
                 <li> <a href="#testimonials">Témoignages</a> </li>
                 <li> <a href="#contact">Contact</a> </li>
-                <li> <a href="#login">Se connecter</a> </li> <!--Ajout du bouton Se connecter-->
+                <li> <a href="#status">Status Juridique</a> </li> <!--Ajout du bouton Se connecter-->
               </ul>
             </div>
           </div>

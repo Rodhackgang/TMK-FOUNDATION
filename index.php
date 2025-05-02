@@ -506,6 +506,8 @@ require './utils/header.php'
 </section>
 
 <!--End History-->
+<!--End History-->
+
 <?php
 // Tableau des images
 $images = [];
@@ -513,37 +515,181 @@ for ($i = 1; $i <= 28; $i++) {
     $images[] = "aide" . $i . ".jpeg";
 }
 
-// Mélanger les images pour les afficher dans un ordre aléatoire
+// Mélanger les images
 shuffle($images);
 
-// Structure HTML de la section de projets
+// Structure HTML
 echo '<section id="works" class="section">
-    <div class="title-box text-center">
-        <h2 class="title">Nos Projets</h2>
-    </div>
-
-    <div class="work-main">
-        <ul class="work-grid">';
-
-// Boucle pour afficher les 30 images de manière dynamique
-for ($i = 0; $i < count($images); $i++) {
-
-    echo '<li class="work-item thumnail-img mix ">
-        <div class="work-image">
-            <img src="images/' . $images[$i] . '" alt="thumbnail">
+    <div class="container">
+        <div class="row">
+            <div class="title-box text-center">
+                <h2 class="title">Nos Projets</h2>
+            </div>
         </div>
 
-        <div class="work-caption">
-            <h4>Projet N°' . ($i + 1) . '</h4>
-        </div>
-    </li>';
+        <div class="projects-container">
+            <div class="project-carousel">';
+
+foreach ($images as $index => $image) {
+    echo '<div class="project-item">
+            <div class="project-image">
+                <img src="images/' . $image . '" alt="Projet N°' . ($index + 1) . '">
+            </div>
+            <h4>Projet N°' . ($index + 1) . '</h4>
+          </div>';
 }
 
-echo '</ul>
+echo '</div>
+        </div>
     </div>
-</section>';
-?>
+</section>
 
+<style>
+/* Styles généraux */
+#works {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+    overflow: hidden;
+}
+
+.title-box .title {
+    font-size: 36px;
+    margin-bottom: 60px;
+    color: #333;
+    position: relative;
+}
+
+/* Conteneur du carrousel */
+.projects-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Piste du carrousel */
+.project-carousel {
+    display: flex;
+    transition: transform 0.5s ease;
+    will-change: transform;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+/* Items individuels */
+.project-item {
+    flex: 0 0 calc(25% - 15px); /* 4 images par vue */
+    min-width: 0;
+    text-align: center;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.project-image {
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.project-item img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-item:hover img {
+    transform: scale(1.05);
+}
+
+.project-item h4 {
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .project-item {
+        flex: 0 0 calc(33.33% - 15px); /* 3 images */
+    }
+}
+
+@media (max-width: 768px) {
+    .project-item {
+        flex: 0 0 calc(50% - 15px); /* 2 images */
+    }
+}
+
+@media (max-width: 576px) {
+    .project-item {
+        flex: 0 0 100%; /* 1 image */
+    }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const carousel = document.querySelector(".project-carousel");
+    const items = document.querySelectorAll(".project-item");
+    const itemWidth = items[0].offsetWidth + 20; // largeur + gap
+    let currentPosition = 0;
+    const visibleItems = 4;
+    let autoScrollInterval;
+    
+    function scrollToNextSet() {
+        currentPosition += itemWidth * visibleItems;
+        
+        // Si on arrive à la fin, revenir au début
+        if (currentPosition > carousel.scrollWidth - (itemWidth * visibleItems)) {
+            currentPosition = 0;
+        }
+        
+        carousel.style.transform = `translateX(-${currentPosition}px)`;
+    }
+    
+    // Démarrer le défilement automatique
+    function startAutoScroll() {
+        autoScrollInterval = setInterval(scrollToNextSet, 3000); // 3 secondes
+    }
+    
+    // Arrêter le défilement au survol
+    carousel.addEventListener("mouseenter", () => {
+        clearInterval(autoScrollInterval);
+    });
+    
+    // Reprendre le défilement quand la souris quitte
+    carousel.addEventListener("mouseleave", startAutoScroll);
+    
+    // Initialiser
+    startAutoScroll();
+    
+    // Adapter au redimensionnement
+    window.addEventListener("resize", function() {
+        itemWidth = items[0].offsetWidth + 20;
+    });
+});
+</script>';
+?>
+<!-- Card de Don -->
+<div id="donCard" class="don-card">
+    <div class="don-card-content">
+        <h3>Voici les numéros sur lesquels vous pouvez faire des dons :</h3>
+        <ul>
+            <li><i class="fab fa-viber"></i> 0824078000 (Vodacom)</li>
+            <li><i class="fab fa-whatsapp"></i> 0850958952 (Orange)</li>
+            <li><i class="fab fa-telegram-plane"></i> 0978219845 (Airtel)</li>
+        </ul>
+    </div>
+</div>
 
 <!-- Start Team -->
 <section id="team" class="section">
@@ -635,7 +781,7 @@ echo '</ul>
             </div>
             <div class="item">
                 <img src="images/20.jpeg" alt="Malika Kubua Veronica" />
-                <h4>Malika Kubua Veronica</h4>
+                <h4>Malaïka Kubua Veronica</h4>
             </div>
             <div class="item">
                 <img src="images/21.jpeg" alt="Aziza Mponga Trésor" />
@@ -1024,6 +1170,36 @@ echo '</ul>
     </div> <!-- /.container-->
 </section>
 <!--End Contact-->
+
+<section id="status" class="section parallax">
+  <div class="status-container">
+    <h2>Le Statut Juridique de l'Entreprise</h2>
+    <div class="status-images">
+      <div class="status-image">
+        <img src="images/sa1.jpeg" alt="Statut juridique 1" onclick="openZoom(this)">
+        <p>Page 1</p>
+      </div>
+      <div class="status-image">
+        <img src="images/sa2.jpeg" alt="Statut juridique 2" onclick="openZoom(this)">
+        <p>Page 2</p>
+      </div>
+      <div class="status-image">
+        <img src="images/sa3.jpeg" alt="Statut juridique 3" onclick="openZoom(this)">
+        <p>Page 3</p>
+      </div>
+      <div class="status-image">
+        <img src="images/sa4.jpeg" alt="Statut juridique 4" onclick="openZoom(this)">
+        <p>Page 4</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal for Zoom -->
+<div id="zoomModal" class="zoom-modal" onclick="closeZoom()">
+  <img id="zoomedImage" class="zoomed-image" src="" alt="Zoomed Image">
+</div>
+
 
 <?php
 require './utils/footer.php'

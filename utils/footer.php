@@ -28,6 +28,15 @@
 <!--End Footer-->
 
 <a href="#" class="scrollup"> <i class="fa fa-chevron-up"> </i> </a>
+<a href="https://wa.me/+243978219845" class="whatsapp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+<a href="https://www.instagram.com/the_miracle_kingdom?igsh=aDEwN3NzdzQ2N2M3" class="instagram" target="_blank">
+    <i class="fab fa-instagram"></i>
+</a>
+<a href="https://www.facebook.com/share/1BreVXkWm5" class="facebook" target="_blank">
+    <i class="fab fa-facebook"></i>
+</a>
 
 <!--Plugins-->
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
